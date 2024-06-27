@@ -1,7 +1,7 @@
-### DFS algorithm
+### Tree search DFS algorithm
 
-def DFSRecursive(G, n, cur, g, visited, path):
-    # Check for stopping
+def DFSRecursive(G, n, cur, g, path):
+    # Check for early stopping
     for i in range(n):
         if G[cur][i] != 0 and i == g:
             return True
@@ -13,10 +13,9 @@ def DFSRecursive(G, n, cur, g, visited, path):
             continue
         
         # If there is a vertex can be traversed
-        if (i not in visited) and (G[cur][i] != 0):
-            visited.append(i)
+        if (i not in path) and (G[cur][i] != 0):
             path.append(i)
-            if DFSRecursive(G, n, i, g, visited, path) == True:
+            if DFSRecursive(G, n, i, g, path) == True:
                 return True
             path.pop()
             
@@ -27,11 +26,10 @@ def DFS(G, s, g): # G is graph, s is start vertex, g is goal vertex
     if s == g:
         return [g]
     
-    visited = [s] # List of visited vertice
     path = [s] # The path to the goal
     n = len(G) # Using the number of vertice as a parameter to reduce the number of time that calculate this number
     
-    if DFSRecursive(G, n, s, g, visited, path) == False:
+    if DFSRecursive(G, n, s, g, path) == False:
         return [-1]
     
     return path
