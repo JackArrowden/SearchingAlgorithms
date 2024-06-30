@@ -4,7 +4,7 @@ def BFS(G, s, g):
     if s == g:
         return [s]
     
-    visited = [s]
+    reached = [s]
     frontier = [s] # Behaves as a FIFO queue
     
     n = len(G)
@@ -14,10 +14,10 @@ def BFS(G, s, g):
         cur = frontier.pop(0) # First in first out
         
         for i in range(n):
-            if i in visited or G[cur][i] == 0:
+            if i in reached or G[cur][i] == 0:
                 continue
             
-            # Check if reach the goal
+            # Check if reach the goal: Early check
             if i == g:
                 path = [cur, g]
                 while prevNode[cur] != -1:
@@ -26,8 +26,8 @@ def BFS(G, s, g):
                 return path
             
             # If not reach the goal
-            if i not in visited:
-                visited.append(i)
+            if i not in reached:
+                reached.append(i)
                 frontier.append(i)
                 prevNode[i] = cur
         
