@@ -1,34 +1,27 @@
 ### BFS algorithm
 
-def BFS(G, s, g):
-    if s == g:
-        return [s]
+import NODE
+import stackQueue
+
+def BFS(problem):
+    node = NODE.NODE(problem.Initial)
+    if problem.IS_GOAL(node.state):
+        return node
     
-    reached = [s]
-    frontier = [s] # Behaves as a FIFO queue
+    frontier = stackQueue.FIFOQueue()
+    frontier.push(node)
+    reached = set({problem.Initial})
     
-    n = len(G)
-    prevNode = [-1] * n # Used for tracking the path returned
-    
-    while len(frontier) != 0:
-        cur = frontier.pop(0) # First in first out
+    while not frontier.is_empty():
+        node = frontier.pop()
         
-        for i in range(n):
-            if i in reached or G[cur][i] == 0:
-                continue
+        for child in problem.EXPAND(node):
+            s = child.state
             
-            # Check if reach the goal: Early check
-            if i == g:
-                path = [cur, g]
-                while prevNode[cur] != -1:
-                    path.insert(0, prevNode[cur])
-                    cur = prevNode[cur]
-                return path
+            if problem.IS_GOAL(s):
+                return child 
             
-            # If not reach the goal
-            if i not in reached:
-                reached.append(i)
-                frontier.append(i)
-                prevNode[i] = cur
-        
-    return [-1]
+            if s not in reached:
+                reached.add(s)
+                frontier.push(child)
+    return None
