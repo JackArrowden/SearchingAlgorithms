@@ -4,7 +4,7 @@ import NODE
 import stackQueue
 
 def BFS(problem):
-    node = NODE.NODE(problem.Initial)
+    node = NODE.NODE(state = problem.Initial)
     if problem.IS_GOAL(node.state):
         return node
     

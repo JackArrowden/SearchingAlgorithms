@@ -1,35 +1,22 @@
 ### Tree search DFS algorithm
+import NODE
+import stackQueue
 
-def DFSRecursive(G, n, cur, g, path):
-    # Check for early stopping
-    for i in range(n):
-        if G[cur][i] != 0 and i == g:
-            return True
+def DFSRecursive(node, problem):
+    for child in problem.EXPAND(node): # Early check
+        if problem.IS_GOAL(child.state):
+            return child
         
-    # If haven't found the path yet, continue searching
-    for i in range(n):
-        # A vertex can traverse to itself, we don't consider this case
-        if i == cur:
-            continue
+    for child in problem.EXPAND(node):
+        s = child.state
         
-        # If there is a vertex can be traversed
-        if (i not in path) and (G[cur][i] != 0):
-            path.append(i)
-            if DFSRecursive(G, n, i, g, path) == True:
-                return True
-            path.pop()
-            
-    # No path was found, return False
-    return False
+        result = DFSRecursive(child, problem)
+        if result != None:
+            return result
+    
+    return None
 
-def DFS(G, s, g): # G is graph, s is start vertex, g is goal vertex
-    if s == g:
-        return [g]
-    
-    path = [s] # The path to the goal
-    n = len(G) # Using the number of vertice as a parameter to reduce the number of time that calculate this number
-    
-    if DFSRecursive(G, n, s, g, path) == False:
-        return [-1]
-    
-    return path
+def DFS(problem):
+    if problem.Initial == problem.Goal:
+        return NODE.NODE(problem.Goal)
+    return DFSRecursive(NODE.NODE(problem.Initial), problem)

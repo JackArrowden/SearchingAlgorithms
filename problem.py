@@ -73,6 +73,14 @@ class Problem:
         path.reverse()
         
         return path
+    
+    def IS_CYCLE(self, node):
+        path = self.getPath(node)
+        path.pop()
+        
+        if node.state in path:
+            return True
+        return False
 
 #     def h(self, state):
 #         return self.heuristic.get(state, 0)
