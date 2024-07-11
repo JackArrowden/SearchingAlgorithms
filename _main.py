@@ -1,8 +1,8 @@
-# import DFS
+import DFS
 import BFS
-# import GBFS
-# import UCS
-# import AStar
+import GBFS
+import UCS
+import AStar
 # import IDS
 import problem
 
@@ -14,7 +14,11 @@ import problem
 main = problem.Problem()
 # main.getProblem('./input.txt')
 # main.getProblem('./testcase2.txt')
-main.getProblem('./testcase3.txt')
+main.getProblem('./testcase2.txt')
 main.printProblem()
 
-print(main.getPath(BFS.BFS(main)))
+# print(main.getPath(BFS.BFS(main)))
+print(main.getPath(DFS.DFS(main)))
+# print(main.getPath(UCS.UCS(main)))
+# print(main.getPath(GBFS.GBFS(main)))
+# print(main.getPath(AStar.AStar(main)))

@@ -9,10 +9,11 @@ Phase 1: Algorithms implementation
 
 Phase 2: Applying class to all of the algorithms
 - [x] BFS
-- [ ] DFS
-- [ ] GBFS
-- [ ] UCS
-- [ ] A*
+- [x] DFS
+- [x] DFS non recursive
+- [x] GBFS
+- [x] UCS
+- [x] A*
 - [ ] Hill climbing
 - [ ] IDS
 

@@ -59,8 +59,7 @@ class Problem:
         for action in self.ACTION(s):
             sCur = self.RESULT(s, action)
             cost = node.cost + self.ACTION_COST(s, action, sCur)
-            yield NODE.NODE(sCur, parent = node, action = self.ACTION(action), cost = cost)
-        # return [NODE.NODE(i, node, action = None, cost = (cost + node.cost)) for i, cost in enumerate(self.AdjMatrix[node.state]) if cost > 0]
+            yield NODE.NODE(sCur, parent = node, action = self.ACTION(action), cost = cost, depth = node.depth + 1)
     
     def getPath(self, node):
         if node == None:
@@ -81,6 +80,3 @@ class Problem:
         if node.state in path:
             return True
         return False
-
-#     def h(self, state):
-#         return self.heuristic.get(state, 0)
