@@ -1,21 +1,16 @@
-import DFS
-import BFS
-import GBFS
-import UCS
-import AStar
-import IDS
 import problem
-import HC
+import SearchAlgorithms
 
 main = problem.Problem()
-main.getProblem('./testcase2.txt')
-main.printProblem()
+main.getProblem('./input1.txt')
 
-# print(main.getPath(BFS.BFS(main)))
-# print(main.getPath(DFS.DFS(main)))
-# print(main.getPath(UCS.UCS(main)))
-# print(main.getPath(GBFS.GBFS(main)))
-# print(main.getPath(AStar.AStar(main)))
-# print(main.getPath(IDS.IDS(main)))
-
-print(main.getPath(HC.HC(main))) ## Remember to check if reach goal
+main.findSolution(
+    './output1.txt',
+    SearchAlgorithms.BFS,
+    SearchAlgorithms.DFS,
+    SearchAlgorithms.UCS,
+    SearchAlgorithms.IDS,
+    SearchAlgorithms.GBFS,
+    SearchAlgorithms.AStar,
+    SearchAlgorithms.HC
+)
