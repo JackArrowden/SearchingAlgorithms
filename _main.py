@@ -3,22 +3,19 @@ import BFS
 import GBFS
 import UCS
 import AStar
-# import IDS
+import IDS
 import problem
+import HC
 
-# print(BFS.BFS([[0,4,5,0,0],[4,0,2,5,6],[5,2,0,3,0],[0,5,3,0,1],[0,6,0,1,0]], 0, 3))
-# print(IDS.DepthLimitedSearch([[0,4,5,0,0],[4,0,2,5,6],[5,2,0,3,0],[0,5,3,0,1],[0,6,0,1,0]], 0, 3))
-# print(GBFS.GBFS([[0,4,5,0,0],[4,0,2,5,6],[5,2,0,3,0],[0,5,3,0,1],[0,6,0,1,0]], [8,5,3,0,1], 2, 4))
-# print(AStar.AStar([[0,4,5,0,0],[4,0,2,5,6],[5,2,0,3,0],[0,5,3,0,1],[0,6,0,1,0]], [8,5,3,0,1], 0, 4))
-# print(UCS.UCS([[0,4,5,0,0],[4,0,2,5,6],[5,2,0,3,0],[0,5,3,0,1],[0,6,0,1,0]], 0, 4))
 main = problem.Problem()
-# main.getProblem('./input.txt')
-# main.getProblem('./testcase2.txt')
 main.getProblem('./testcase2.txt')
 main.printProblem()
 
 # print(main.getPath(BFS.BFS(main)))
-print(main.getPath(DFS.DFS(main)))
+# print(main.getPath(DFS.DFS(main)))
 # print(main.getPath(UCS.UCS(main)))
 # print(main.getPath(GBFS.GBFS(main)))
 # print(main.getPath(AStar.AStar(main)))
+# print(main.getPath(IDS.IDS(main)))
+
+print(main.getPath(HC.HC(main))) ## Remember to check if reach goal

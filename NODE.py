@@ -9,7 +9,15 @@ class NODE:
         self.depth = depth
         if parent:
             self.depth = parent.depth + 1
-        # self.hValue = float('inf')
         
     def __lt__(self, other): # Operator overloading: operator <
         return self.state < other.state
+    
+    def __le__(self, other): # Operator overloading: operator <=
+        return self.state <= other.state
+    
+    def __gt__(self, other): # Operator overloading: operator >
+        return self.state > other.state
+    
+    def __ge__(self, other): # Operator overloading: operator >=
+        return self.state >= other.state
