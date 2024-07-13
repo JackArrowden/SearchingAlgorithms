@@ -105,7 +105,7 @@ class Problem:
         return False
     
     def pathToString(self, node):
-        if node.state != self.Goal:
+        if node == None or node.state != self.Goal:
             return "Path: -1"
             
         path = self.getPath(node)

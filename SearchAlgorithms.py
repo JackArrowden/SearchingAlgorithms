@@ -26,7 +26,7 @@ def BFS(problem):
     return None
 
 # BEST FIRST SEARCH
-def BestFirstSearch(problem, f, earlyStop = False, dfsCheckCycle = False):
+def BestFirstSearch(problem, f, earlyStop = False, isDFS = False):
     node = NODE.NODE(state = problem.Initial)
     frontier = stackQueue.PriorityQueue()
     frontier.push([f(node), node])
@@ -44,17 +44,19 @@ def BestFirstSearch(problem, f, earlyStop = False, dfsCheckCycle = False):
             if earlyStop and problem.IS_GOAL(s): # Early stop chekking
                 return child 
             
-            if dfsCheckCycle and problem.IS_CYCLE(child):
+            if isDFS and problem.IS_CYCLE(child):
                 continue
             
-            if s not in reached or f(child) < f(reached[s]):
+            if isDFS: # If the algorithm is DFS, then we don use reached table
+                frontier.push([f(child), child])
+            elif s not in reached or f(child) < f(reached[s]):
                 reached[s] = child
                 frontier.push([f(child), child])
     return None
 
 # DEPTH FIRST SEARCH
 def DFS(problem):
-    return BestFirstSearch(problem, lambda node : -node.depth, earlyStop = True, dfsCheckCycle = True)
+    return BestFirstSearch(problem, lambda node : -node.depth, earlyStop = True, isDFS = True)
 
 # UNIFORM COST SEARCH
 def UCS(problem):
@@ -104,10 +106,10 @@ def HC(problem):
     while True:
         neighbor = current
         for child in problem.EXPAND(current):
-            if neighbor < child:
+            if problem.Heuristic[neighbor.state] > problem.Heuristic[child.state]:
                 neighbor = child
                 
-        if neighbor <= current:
+        if problem.Heuristic[neighbor.state] >= problem.Heuristic[current.state]:
             return current
         
         current = neighbor
