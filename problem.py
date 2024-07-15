@@ -2,6 +2,7 @@
 import NODE
 import timeit
 import tracemalloc
+
 class Problem:
     def __init__(self, file = None, AdjMatrix = [], heuristic = [], initial = None, goal = None):
         self.AdjMatrix = AdjMatrix

@@ -2,10 +2,10 @@ import problem
 import SearchAlgorithms
 
 main = problem.Problem()
-main.getProblem('./input1.txt')
+main.getProblem('./TestCases/input.txt')
 
 main.findSolution(
-    './output1.txt',
+    './TestCases/output.txt',
     SearchAlgorithms.BFS,
     SearchAlgorithms.DFS,
     SearchAlgorithms.UCS,
